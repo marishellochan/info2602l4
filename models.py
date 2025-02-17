@@ -104,6 +104,9 @@ class RegularUser(User):
       'polymorphic_identity': 'regular user',
   }
 
+  def get_todos(self):
+    return sorted(self.todos, key=lambda todo: todo.id, reverse=True)
+
   def add_todo(self, text):
     new_todo = Todo(text=text)
     new_todo.user_id = self.id
